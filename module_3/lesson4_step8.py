@@ -20,7 +20,7 @@ try:
 
     input4 = browser.find_element_by_name("file")
     current_dir = os.path.abspath(os.path.dirname(__file__))
-    file_path = os.path.join(current_dir, 'myfile.txt.txt')
+    file_path = os.path.join(current_dir, 'myfile.txt')
     input4.send_keys(file_path)
 
     button = browser.find_element_by_css_selector("button.btn")
