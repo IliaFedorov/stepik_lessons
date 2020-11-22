@@ -1,22 +1,21 @@
 from selenium import webdriver
-import time
 link = "http://selenium1py.pythonanywhere.com/ru/catalogue/"
 
 try:
     browser = webdriver.Chrome()
+    browser.implicitly_wait(5)
     browser.get(link)
 
-    input1 = browser.find_element_by_xpath("//h3/a")
-    x = input1.text
+    first_product = browser.find_element_by_xpath("//h3/a")
+    first_product_name = first_product.text
 
-    input2 = browser.find_element_by_css_selector(".col-lg-3 form")
-    input2.click()
-    time.sleep(5)
+    add_basket_button = browser.find_element_by_css_selector(".col-lg-3 form")
+    add_basket_button.click()
 
-    input3 = browser.find_element_by_css_selector(".alert-success .alertinner ")
-    y = input3.text
+    basket_add_notification = browser.find_element_by_css_selector(".alert-success .alertinner ")
+    basket_add_notification_text = basket_add_notification.text
 
-    assert x in y
+    assert first_product_name in basket_add_notification_text
 
 finally:
     browser.quit()
