@@ -3,7 +3,6 @@ import unittest
 
 class TestAbs(unittest.TestCase):
     def test_abs1(self):
-        try:
             link = "http://suninjuly.github.io/registration1.html"
             browser = webdriver.Chrome()
             browser.implicitly_wait(5)
@@ -23,14 +22,12 @@ class TestAbs(unittest.TestCase):
             welcome_text = welcome_text_elt.text
 
             self.assertEqual("Congratulations! You have successfully registered!", welcome_text,
-                             "registration went wrong")
+                             "registry failed")
 
-        finally:
             browser.quit()
 
     def test_abs2(self):
-        try:
-            link = "http://suninjuly.github.io/registration1.html"
+            link = "http://suninjuly.github.io/registration2.html"
             browser = webdriver.Chrome()
             browser.implicitly_wait(5)
             browser.get(link)
@@ -48,9 +45,8 @@ class TestAbs(unittest.TestCase):
             welcome_text_elt = browser.find_element_by_tag_name("h1")
             welcome_text = welcome_text_elt.text
 
-            self.assertEqual("Congratulations! You have successfully registered!", welcome_text, "registration went wrong")
+            self.assertEqual("Congratulations! You have successfully registered!", welcome_text, "registry failed")
 
-        finally:
             browser.quit()
 
 if __name__ == "__main__":
