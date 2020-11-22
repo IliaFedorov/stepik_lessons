@@ -1,7 +1,11 @@
 from selenium import webdriver
 link = "http://selenium1py.pythonanywhere.com/ru/catalogue/"
 
-try:
+
+def test_add_to_basket():
+
+    try:
+
     browser = webdriver.Chrome()
     browser.implicitly_wait(5)
     browser.get(link)
@@ -17,5 +21,5 @@ try:
 
     assert first_product_name in basket_add_notification_text
 
-finally:
+    finally:
     browser.quit()
