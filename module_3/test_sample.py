@@ -16,7 +16,7 @@ try:
     input3 = browser.find_element_by_css_selector(".alert-success .alertinner ")
     y = input3.text
 
-    assert x+" был добавлен в вашу корзину." == y
+    assert x in y
 
 finally:
     browser.quit()
