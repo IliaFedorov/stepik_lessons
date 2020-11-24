@@ -9,7 +9,11 @@ basket_add_button_locator = ".col-lg-3 form"
 first_product_name_locator = "//h3/a"
 basket_add_notification_locator = ".alert-success .alertinner "
 
-def test_add_one_item_to_basket():
+
+def test_add_one_item_to_basket_with_notification():
+    #Data
+    assert_error_message = "Either product wasn't added to the basket or there was no notification about it"
+
     try:
         # Arrange
         browser = webdriver.Chrome()
@@ -27,9 +31,9 @@ def test_add_one_item_to_basket():
         # Assert
         first_product_name = browser.find_element_by_xpath(first_product_name_locator).text
         basket_add_notification = browser.find_element_by_css_selector(basket_add_notification_locator).text
-        assert first_product_name in basket_add_notification, "Product wasn't added to the basket"
+        assert first_product_name in basket_add_notification, assert_error_message
 
     finally:
         browser.quit()
 
-test_add_one_item_to_basket()
+test_add_one_item_to_basket_with_notification()
