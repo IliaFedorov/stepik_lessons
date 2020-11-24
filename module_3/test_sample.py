@@ -3,14 +3,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+test_main_page_link = "http://selenium1py.pythonanywhere.com/ru"
+every_item_button_locator = "Все товары"
+basket_add_button_locator = ".col-lg-3 form"
+first_product_name_locator = "//h3/a"
+basket_add_notification_locator = ".alert-success .alertinner "
 
 def test_add_one_item_to_basket():
-    #Data
-    every_item_button_locator = "Все товары"
-    test_main_page_link = "http://selenium1py.pythonanywhere.com/ru"
-    basket_add_button_locator = ".col-lg-3 form"
-    first_product_name_locator = "//h3/a"
-    basket_add_notification_locator = ".alert-success .alertinner "
     try:
         # Arrange
         browser = webdriver.Chrome()
