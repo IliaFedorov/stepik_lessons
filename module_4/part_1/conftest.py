@@ -1,11 +1,9 @@
 import pytest
 from selenium import webdriver
-import time
 
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default=None,
                      help="Choose language: ru, en-gb, es, fr")
-
 
 @pytest.fixture(scope="function")
 def browser(request):
@@ -35,8 +33,7 @@ def browser(request):
 
     page_link = f"http://selenium1py.pythonanywhere.com/{link_language}/catalogue/coders-at-work_207/"
     browser.get(page_link)
-    #time.sleep(150)
+
     yield browser
     print("\nquit browser..")
-
     browser.quit()
