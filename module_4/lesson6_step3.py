@@ -7,8 +7,8 @@ import time
 import math
 
 #data
-answer = math.log(int(time.time()))
-paste_result_locator = "#ember89"
+answer = str(math.log(int(time.time())))
+paste_result_locator = "#ember91"
 submit_button_locator = ".submit-submission"
 
 #arrange
@@ -28,6 +28,9 @@ def test_get_correct_answer(browser, site_link):
     browser.get(link)
     paste_result = browser.find_element_by_css_selector(paste_result_locator)
     paste_result.send_keys(answer)
-    submit_button = browser.find_element_by_css_selector(submit_button_locator)
+
+    submit_button = WebDriverWait(browser, 5).until(
+        EC.element_to_be_clickable((By.CSS, submit_button_locator))
+    )
     submit_button.click
-    time.sleep(10)
+    time.sleep(33)
