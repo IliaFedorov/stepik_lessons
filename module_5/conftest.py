@@ -2,8 +2,8 @@ import pytest
 from selenium import webdriver
 
 def pytest_addoption(parser):
-    parser.addoption('--language', action='store', default=None,
-                     help="Choose language: ru, en-GB, es, fr")
+    parser.addoption('--language', action='store', default="en-GB",
+                     help="Choose language: ru, en-gb, es, fr")
 
 @pytest.fixture(scope="function")
 def browser(request):
@@ -16,7 +16,7 @@ def browser(request):
         print("\nopening russian language web page..")
         link_language = language
 
-    elif language == "en-GB":
+    elif language == "en-gb":
         print("\nopening english language web page..")
         link_language = language
 
@@ -28,8 +28,7 @@ def browser(request):
         print("\nopening spanish language web page..")
         link_language = language
     else:
-        print("\nno language parameter was given, opening russian language web page..")
-        link_language = 'ru'
+        print("\nno language parameter was given, opening english language web page..")
 
     page_link = f"http://selenium1py.pythonanywhere.com/{link_language}/catalogue/coders-at-work_207/"
     browser.get(page_link)
