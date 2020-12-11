@@ -3,7 +3,7 @@ from selenium import webdriver
 
 def pytest_addoption(parser):
     parser.addoption('--language', action='store', default=None,
-                     help="Choose language: ru, en-GB, es, fr")
+                     help="Choose language: ru, en-gb, es, fr")
 
 @pytest.fixture(scope="function")
 def browser(request):
@@ -16,7 +16,7 @@ def browser(request):
         print("\nopening russian language web page..")
         link_language = language
 
-    elif language == "en-GB":
+    elif language == "en-gb":
         print("\nopening english language web page..")
         link_language = language
 
