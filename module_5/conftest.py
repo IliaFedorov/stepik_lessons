@@ -10,6 +10,7 @@ def browser(request):
     browser = webdriver.Chrome()
     browser.implicitly_wait(5)
     language = request.config.getoption("language")
+    link_language = None
 
     if language == "ru":
 
@@ -27,7 +28,7 @@ def browser(request):
         print("\nno language parameter was given, opening english language web page..")
         link_language = language
 
-
     yield browser
     print("\nquit browser..")
     browser.quit()
+
