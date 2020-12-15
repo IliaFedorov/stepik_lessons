@@ -12,6 +12,7 @@ class ProductPageLocators():
     BUTTON_ADD_TO_BASKET = (By.CSS_SELECTOR, ".btn-add-to-basket")
     CARD_ITEM_NAME = (By.XPATH, "//div/h1")
     CARD_ITEM_COST = (By.CSS_SELECTOR, ".product_main .price_color")
-    MESSAGE_ITEM_NAME = (By.CSS_SELECTOR, "#messages .alert")
+    MESSAGE_ITEM_NAME = (By.CSS_SELECTOR, "#messages > div:nth-child(1) > div > strong")
     MESSAGE_ITEM_COST = (By.CSS_SELECTOR, "#messages .alert-info")
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, "#messages .alert-success")
 
