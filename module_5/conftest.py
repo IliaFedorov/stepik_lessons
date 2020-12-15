@@ -1,5 +1,6 @@
 import pytest
 from selenium import webdriver
+#import time
 from selenium.webdriver.chrome.options import Options
 
 def pytest_addoption(parser):
@@ -17,10 +18,10 @@ def browser(request):
     print("\nopening browser..")
 
     browser = webdriver.Chrome(options=options)
-    browser.maximize_window()
-    browser.implicitly_wait(10)
+    #browser.maximize_window()
 
     yield browser
     print("\nquit browser..")
+    #time.sleep(15)
     browser.quit()
 
