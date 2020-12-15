@@ -2,7 +2,7 @@ from .base_page import BasePage
 from .locators import MainPageLocators
 from .login_page import LoginPage
 #Data
-login_assert_fail = "Login link is not presented"
+login_assert_fail = "нет ссылки на страницу логина"
 
 class MainPage(BasePage):
     def go_to_login_page(self):

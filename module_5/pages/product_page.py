@@ -2,13 +2,21 @@ from .base_page import BasePage
 from .locators import ProductPageLocators
 
 #Data
-login_assert_fail = "Login link is not presented"
+wrong_item_cost_notification = "цена не совпадает"
+wrong_item_name_notification = "Название товара не совпадает"
+
+
 
 class ProductPage(BasePage):
-    def go_to_login_page(self):
-        link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
-        link.click()
-        #return LoginPage(browser=self.browser, url=self.browser.current_url)
 
-    def should_be_login_link(self):
-        assert self.is_element_present(*MainPageLocators.LOGIN_LINK), login_assert_fail
+    def add_item_to_basket(self):
+        link = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
+        link.click()
+
+    def should_be_same_name(self):
+        assert self.browser.find_element(*ProductPageLocators.CARD_ITEM_NAME).text in self.browser.find_element(*ProductPageLocators.MESSAGE_ITEM_NAME).text, wrong_item_name_notification
+
+    def should_be_same_cost(self):
+        assert self.browser.find_element(*ProductPageLocators.CARD_ITEM_COST).text in self.browser.find_element(*ProductPageLocators.MESSAGE_ITEM_COST).text, wrong_item_cost_notification
+
+
