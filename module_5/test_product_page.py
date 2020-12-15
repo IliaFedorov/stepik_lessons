@@ -1,8 +1,5 @@
 from .pages.product_page import ProductPage
 import pytest
-import time
-
-
 
 class TestProductPage:
     @pytest.mark.parametrize('link',
@@ -13,7 +10,8 @@ class TestProductPage:
                               "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
                               "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
                               "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6",
-                              pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", marks=pytest.mark.xfail),
+                              pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", \
+                                           marks=pytest.mark.xfail),
                               "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
                               "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
     def test_guest_can_add_product_to_basket(self, browser, link):
@@ -24,7 +22,6 @@ class TestProductPage:
 
         #act
         page.solve_quiz_and_get_code()
-        #time.sleep(150)
 
         #assert
         page.should_be_same_name()
