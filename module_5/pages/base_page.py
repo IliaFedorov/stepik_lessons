@@ -15,3 +15,12 @@ class BasePage():
 
     def open(self):
         self.browser.get(self.url)
+
+    def is_url_valid(self):
+        try:
+            self.browser.current_url(self.url)how, what)
+        except (NoSuchElementException):
+            return False
+        return True
+
+
