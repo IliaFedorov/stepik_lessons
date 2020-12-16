@@ -4,6 +4,7 @@ from .locators import ProductPageLocators
 #Data
 wrong_item_cost_notification = "цена не совпадает"
 wrong_item_name_notification = "Название товара не совпадает"
+success_message_presented = "Success message is presented, but should not be"
 
 
 
@@ -23,6 +24,10 @@ class ProductPage(BasePage):
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
-            "Success message is presented, but should not be"
+            success_message_presented
+
+    def success_message_should_disappear(self):
+        self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE)
+
 
 
