@@ -5,6 +5,10 @@ from .login_page import LoginPage
 login_assert_fail = "нет ссылки на страницу логина"
 
 class MainPage(BasePage):
+
+    def __init__(self, *args, **kwargs):
+        super(MainPage, self).__init__(*args, **kwargs)
+
     def go_to_login_page(self):
         link = self.browser.find_element(*MainPageLocators.LOGIN_LINK)
         link.click()
