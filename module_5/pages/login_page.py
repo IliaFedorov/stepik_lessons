@@ -1,5 +1,8 @@
 from .base_page import BasePage
 from .locators import LoginPageLocators
+import time
+
+
 
 #Data
 url_check_text = "login"
@@ -21,3 +24,6 @@ class LoginPage(BasePage):
 
     def should_be_register_form(self):
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), register_form_fail_notification
+
+    def register_new_user(self, username, password):
+        email = str(time.time()) + "@fakemail.org"

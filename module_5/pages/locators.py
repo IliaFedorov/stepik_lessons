@@ -4,6 +4,7 @@ class BasketPageLocators():
     BASKET_COST_LINK = (By.CSS_SELECTOR, "#messages > div > div > p:nth-child(1) > strong")
     BASKET_LINK = (By.CSS_SELECTOR, ".btn-group > a")
     BASKET_CONTENT_LINK = (By.CSS_SELECTOR, ".content .row")
+    USER_ICON = (By.CSS_SELECTOR, ".icon-user")
 
 class BasePageLocators():
     LOGIN_LINK = (By.CSS_SELECTOR, "#login_link")

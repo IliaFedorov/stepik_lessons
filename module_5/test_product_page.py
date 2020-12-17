@@ -1,7 +1,7 @@
 from .pages.product_page import ProductPage
 from .pages.login_page import LoginPage
+from .pages.basket_page import BasketPage
 import pytest
-import time
 
 @pytest.mark.parametrize('link',
                              [#"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
@@ -18,6 +18,31 @@ import time
 
 #link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
 class TestProductPage:
+
+    class TestUserAddToBasketFromProductPage:
+        def test_user_cant_see_success_message(self, browser, link):
+            # Arrange
+            page = ProductPage(browser, link)
+
+            # Act
+            page.open()
+
+            # Assert
+            page.should_not_be_success_message()
+
+        def test_user_can_add_product_to_basket(self, browser, link):
+            # Arrange
+            page = ProductPage(browser, link)
+            page.open()
+            page.add_item_to_basket()
+
+            # Act
+            page.solve_quiz_and_get_code()
+            # time.sleep(150)
+
+            # Assert
+            page.should_be_same_name()
+            page.should_be_same_cost()
 
     def test_guest_can_add_product_to_basket(self, browser, link):
         #Arrange
@@ -88,6 +113,20 @@ class TestProductPage:
         # Assert
         login_page = LoginPage(browser, browser.current_url)
         login_page.should_be_login_page()
+
+    def test_guest_cant_see_product_in_basket_opened_from_product_page(self,browser, link):
+        # Arrange
+        page = ProductPage(browser, link)
+        page.open()
+
+        #Act
+        page.go_to_basket()
+
+        #Assert
+        basket_page = BasketPage(browser, browser.current_url)
+        basket_page.empty_basket_message_should_be_empty()
+        basket_page.empty_basket_should_be_empty()
+
 
 
 
