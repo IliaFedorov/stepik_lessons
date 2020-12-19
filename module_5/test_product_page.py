@@ -5,26 +5,15 @@ from .pages.main_page import MainPage
 import pytest
 import time
 
-@pytest.mark.parametrize('link',
-                             [#"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
-                              #"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
-                              #"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
-                              #"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
-                              #"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
-                              #"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
-                              #"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6",
-                              #pytest.param("http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", \
-                              #             marks=pytest.mark.xfail),
-                              #"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
-                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
 
-#link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/"
+
+link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
 class TestProductPage:
     @pytest.mark.registered_user
     class TestUserAddToBasketFromProductPage:
 
         @pytest.fixture(scope="function", autouse=True)
-        def setup(self, browser, link):
+        def setup(self, browser):
             self.page = LoginPage(browser, link)
             self.page.open()
             self.page.go_to_login_page()
@@ -33,7 +22,7 @@ class TestProductPage:
             self.page.should_be_authorized_user()
 
 
-        def test_user_cant_see_success_message(self, browser, link):
+        def test_user_cant_see_success_message(self, browser):
             # Arrange
             page = ProductPage(browser, link)
 
@@ -43,7 +32,7 @@ class TestProductPage:
             # Assert
             page.should_not_be_success_message()
 
-        def test_user_can_add_product_to_basket(self, browser, link):
+        def test_user_can_add_product_to_basket(self, browser):
             # Arrange
             page = ProductPage(browser, link)
             page.open()
@@ -57,6 +46,19 @@ class TestProductPage:
             page.should_be_same_name()
             page.should_be_same_cost()
 
+    @pytest.mark.parametrize('link',
+                             ["http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0",
+                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer1",
+                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer2",
+                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer3",
+                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer4",
+                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer5",
+                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer6",
+                              pytest.param(
+                                  "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer7", \
+                                  marks=pytest.mark.xfail),
+                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer8",
+                              "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer9"])
     def test_guest_can_add_product_to_basket(self, browser, link):
         #Arrange
         page = ProductPage(browser, link)
@@ -71,9 +73,9 @@ class TestProductPage:
         page.should_be_same_name()
         page.should_be_same_cost()
 
-    def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser, link):
+    def test_guest_cant_see_success_message_after_adding_product_to_basket(self, browser):
         # Arrange
-        page = ProductPage(browser, link)
+        page = ProductPage(browser)
         page.open()
         page.add_item_to_basket()
 
@@ -83,7 +85,7 @@ class TestProductPage:
         # Assert
         page.should_not_be_success_message()
 
-    def test_guest_cant_see_success_message(self, browser, link):
+    def test_guest_cant_see_success_message(self, browser):
         # Arrange
         page = ProductPage(browser, link)
 
@@ -93,7 +95,7 @@ class TestProductPage:
         # Assert
         page.should_not_be_success_message()
 
-    def test_message_disappeared_after_adding_product_to_basket(self, browser, link):
+    def test_message_disappeared_after_adding_product_to_basket(self, browser):
         # Arrange
         page = ProductPage(browser, link)
         page.open()
@@ -105,7 +107,7 @@ class TestProductPage:
         # Assert
         page.success_message_should_disappear()
 
-    def test_guest_should_see_login_link_on_product_page(self, browser, link):
+    def test_guest_should_see_login_link_on_product_page(self, browser):
         # Arrange
         page = ProductPage(browser, link)
 
@@ -115,7 +117,7 @@ class TestProductPage:
         # Assert
         page.should_be_login_link()
 
-    def test_guest_can_go_to_login_page_from_product_page(self, browser, link):
+    def test_guest_can_go_to_login_page_from_product_page(self, browser):
         # Arrange
         page = ProductPage(browser, link)
         page.open()
@@ -127,7 +129,7 @@ class TestProductPage:
         login_page = LoginPage(browser, browser.current_url)
         login_page.should_be_login_page()
 
-    def test_guest_cant_see_product_in_basket_opened_from_product_page(self,browser, link):
+    def test_guest_cant_see_product_in_basket_opened_from_product_page(self,browser):
         # Arrange
         page = ProductPage(browser, link)
         page.open()

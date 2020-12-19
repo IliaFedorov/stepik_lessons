@@ -6,12 +6,13 @@ wrong_item_cost_notification = "цена не совпадает"
 wrong_item_name_notification = "Название товара не совпадает"
 success_message_presented = "Success message is presented, but should not be"
 success_message_still_presented = "Success message haven't disappeared, but should"
-
+add_to_basket_is_not_present_notification = " There is no active add to basket button, or a wrong page opened"
 
 
 class ProductPage(BasePage):
 
     def add_item_to_basket(self):
+        assert self.is_element_present(*ProductPageLocators.BUTTON_ADD_TO_BASKET), add_to_basket_is_not_present_notification
         link = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         link.click()
 
