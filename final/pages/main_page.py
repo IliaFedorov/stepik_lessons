@@ -1,5 +1,6 @@
 from .base_page import BasePage
 from .locators import MainPageLocators
+from .locators import BasketPageLocators
 #Data
 login_assert_fail = "нет ссылки на страницу логина"
 
