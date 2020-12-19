@@ -5,14 +5,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from .locators import BasePageLocators
 from .locators import BasketPageLocators
+import time
 import math
-#Data
 
+#Data
 login_link_assert_message = "Login link is not presented"
 Unauthorized_user_message = "User icon is not presented, probably unauthorised user"
 
 class BasePage():
-    def __init__(self, browser, url, timeout=10):
+    def __init__(self, browser, url, timeout=5):
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
@@ -54,6 +55,10 @@ class BasePage():
 
     def open(self):
         self.browser.get(self.url)
+
+    def generate_mail(self):
+        return str(time.time()) + "@fakemail.org"
+
 
     #def current_url(self):
     #    self.browser.current_url()

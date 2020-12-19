@@ -5,6 +5,7 @@ from .locators import ProductPageLocators
 wrong_item_cost_notification = "цена не совпадает"
 wrong_item_name_notification = "Название товара не совпадает"
 success_message_presented = "Success message is presented, but should not be"
+success_message_still_presented = "Success message haven't disappeared, but should"
 
 
 
@@ -27,7 +28,7 @@ class ProductPage(BasePage):
             success_message_presented
 
     def success_message_should_disappear(self):
-        self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE)
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE) == True, success_message_still_presented
 
 
 
