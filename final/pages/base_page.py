@@ -11,6 +11,8 @@ import math
 #Data
 login_link_assert_message = "Login link is not presented"
 Unauthorized_user_message = "User icon is not presented, probably unauthorised user"
+result_is_not_null = "Result should be 0, but is not"
+result_is_null = "Result should be not null"
 
 class BasePage():
     def __init__(self, browser, url, timeout=5):
@@ -59,10 +61,6 @@ class BasePage():
     def generate_mail(self):
         return str(time.time()) + "@fakemail.org"
 
-
-    #def current_url(self):
-    #    self.browser.current_url()
-
     def solve_quiz_and_get_code(self):
         alert = self.browser.switch_to.alert
         x = alert.text.split(" ")[2]
@@ -79,6 +77,12 @@ class BasePage():
 
     def should_be_authorized_user(self):
         assert self.is_element_present(*BasePageLocators.USER_ICON), Unauthorized_user_message
+
+    def should_be_null_find_result(self):
+        assert self.is_not_element_present(*BasePageLocators.SEARCH_RESULT), result_is_not_null
+
+    def should_be_not_null_find_result(self):
+        assert self.is_element_present(*BasePageLocators.SEARCH_RESULT), result_is_null
 
 
 
