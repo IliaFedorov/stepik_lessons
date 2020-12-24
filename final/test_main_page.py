@@ -60,7 +60,7 @@ class TestMainPage:
             basket_page.empty_basket_message_should_be_empty()
             basket_page.empty_basket_should_be_empty()
 
-    @pytest.mark.search_user
+    @pytest.mark.user
     class TestUserFromMainPage:
 
         @pytest.fixture(scope="function", autouse=True)

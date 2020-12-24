@@ -8,7 +8,7 @@ import time
 
 link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/?promo=offer0"
 class TestProductPage:
-    @pytest.mark.user_basket
+    @pytest.mark.user
     class TestUserAddToBasketFromProductPage:
 
         @pytest.fixture(scope="function", autouse=True)
